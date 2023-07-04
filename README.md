@@ -1,3 +1,3 @@
-## Satu Data Kota Pontianak
+## Visualisasi Satu Data Kuburaya
 
-Aplikasi Satu Data Kota Pontianak
+Aplikasi Visualisasi Satu Data Kuburaya

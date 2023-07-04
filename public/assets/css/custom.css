@@ -1,0 +1,8 @@
+#navbar_box{
+    background: #FFF;
+}
+@media(max-width: 760px) {
+    .btn-sm-full-width {
+        width: 100%;
+    }
+}

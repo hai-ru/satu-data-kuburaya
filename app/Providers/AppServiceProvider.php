@@ -27,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
+
         Http::macro('satudata', function () {
             return Http::baseUrl(config('ckan_api.endpoint') . '/api/' . config('ckan_api.api_version') . '/action/');
         });

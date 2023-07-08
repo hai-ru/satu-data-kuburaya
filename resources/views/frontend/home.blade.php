@@ -135,7 +135,7 @@
     @endif
 
     <!--statistic section start-->
-    <section class="statistic-section mt-5 mb-5">
+    {{-- <section class="statistic-section mt-5 mb-5">
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-md-9 col-lg-8">
@@ -146,11 +146,11 @@
             </div>
             <div class="row">
                 <div class="col-md-12 col-lg-12">
-                    {{-- statistik pengunjung --}}
+
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--statistic section end-->
 
     <!--testimonial section start-->

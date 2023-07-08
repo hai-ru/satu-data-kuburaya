@@ -227,7 +227,7 @@
     <!--testimonial section end-->
 
     <!--link section start-->
-    <div class="link-section ptb-100 gray-light-bg">
+    {{-- <div class="link-section ptb-100 gray-light-bg">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-9 col-lg-8">
@@ -281,7 +281,7 @@
             </div>
             <!--link logo end-->
         </div>
-    </div>
+    </div> --}}
     <!--link section start-->
 @endsection
 

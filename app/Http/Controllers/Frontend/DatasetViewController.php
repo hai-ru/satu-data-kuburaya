@@ -38,15 +38,41 @@ class DatasetViewController extends Controller
                 $start = ($request->get('page') * $rows) - 9;
             }
         }
+
+        $list_filter = [];
+        if($request->filled('pd')){
+            $list_filter[] = 'organization:' . $pd;
+        }
+
+        $groupSingle = null;
+        if($request->filled('group_id')){
+            $list_filter[] = 'groups:'.$request->group_id;
+            $resGroup = RestApiFormatter::get('group_show', ['id'=>$request->group_id]);
+            if ($resGroup->success) {
+                $groupSingle = $resGroup->result;
+            }
+        }
+        
+        $fq = "";
+        if(count($list_filter) > 0){
+            foreach ($list_filter as $key => $value) {
+                $fq = $key === 0 ? $fq.$value : $fq." ".$value;
+            }
+        }
+        // $pd = 'organization:dinas-penanaman-modal-dan-pelayanan-terpadu-satu-pintu groups:apbd-dan-penerimaan-pajak';
+        // DD($fq);
         $bodyDataset = [
             'q' => $cari,
             'rows' => $rows,
             'start' => $start,
             'include_private' => true,
-            'fq' => $pd ? ('organization:' . $pd) : $pd,
+            'fq' => $fq,
             'sort' => $sortSelected,
         ];
+        // DD($bodyDataset);
+        // dd(http_build_query($bodyDataset));
         $resDataset = RestApiFormatter::get('package_search', $bodyDataset);
+        // DD($resDataset);
         $datasetCount = $resDataset->result->count <= 0 ? 0 : $resDataset->result->count - 1;
 
         if ($datasetCount > $rows) {
@@ -114,6 +140,7 @@ class DatasetViewController extends Controller
             'kategori' => $resKategori->result,
             'opdSelect' => $opdSelect,
             'opdSidebar' => $opdSidebar,
+            'groupSingle' => $groupSingle
         );
 
         return view('frontend.dataset.index', $data);

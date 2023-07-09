@@ -32,8 +32,11 @@
                                             alt="{{ $item->display_name }}" class="mb-3" height="100">
                                     </div>
                                     <div>
-                                        <h6 class="mb-0 three-lines-words">{{ $item->display_name }}</h6>
-                                        <p class="font-weight-bold text-primary mb-0">{{ $item->package_count - 1 }} Dataset</p>
+                                        <h6 class="mb-0 three-lines-words text-center">{{ $item->display_name }}</h6>
+                                        <a href="{{ route('frontend.dataset.index',['pd'=> $item->name ]) }}" class="btn btn-primary btn-block mt-3">
+                                            {{ $item->package_count - 1 }} Dataset
+                                        </a>
+                                        {{-- <p class="font-weight-bold text-primary mb-0">{{ $item->package_count - 1 }} Dataset</p> --}}
                                     </div>
                                 </div>
                             </div>

@@ -116,7 +116,7 @@
                 <div class="row">
                     @foreach ($kategori as $item)
                         <div class="col-6 col-md-4 col-lg-4 mb-4 text-center">
-                            <a href="{{ route('frontend.dataset.index', ["kategori=$item->name"]) }}">
+                            <a href="{{ route('frontend.dataset.index', ["group_id=$item->name"]) }}">
                                 <div class="single-promo-block promo-hover-bg-1 hover-image shadow-lg p-5 rounded">
                                     <img src="{{ $item->image_display_url ? $item->image_display_url : asset('frontend/img/data-analytics.svg') }}"
                                         alt="{{ $item->display_name }}" class="mb-3" height="100">

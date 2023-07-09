@@ -1,5 +1,14 @@
 @extends('frontend.layouts.app')
 
+@push('styles')
+    <style>
+        .img-opd {
+            max-height: 100%;
+            height: auto;
+        }
+    </style>
+@endpush
+
 @section('content')
     <!--header section start-->
     <section class="hero-section ptb-100 gradient-overlay"
@@ -25,7 +34,7 @@
                     <div class="section-heading text-center mb-5">
                         <p class="lead">
                             Di halaman ini tersedia daftar Dataset yang membangun ekosistem data yang terbuka
-                            dan terpercaya melalui publikasi di Satu Data Pemerintah Kota Pontianak
+                            dan terpercaya melalui publikasi di Visualisasi Satu Data Pemerintah Kabupaten Kuburaya
                         </p>
                     </div>
                 </div>
@@ -38,7 +47,9 @@
                                 <div class="card text-center single-pricing-pack">
                                     <div class="pricing-img mt-4">
                                         <img src="{{ $result['pdSingle']->image_display_url }}"
-                                            alt="{{ $result['pdSingle']->display_name }}" class="img-fluid">
+                                            alt="{{ $result['pdSingle']->display_name }}" 
+                                            class="img-opd"
+                                        >
                                     </div>
                                     <div class="card-header py-4 border-0 pricing-header">
                                         <div class="h5 text-center mb-0">
@@ -51,6 +62,36 @@
                                         <span class="badge badge-primary pl-3 pt-2 pr-3 pb-2"
                                             style="font-size: 12pt !important;">
                                             {{ $result['pdSingle']->package_count -1 }} Dataset
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if ($result['groupSingle'])
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="card text-center single-pricing-pack">
+                                    <div class="pricing-img mt-4">
+                                        <img src="{{ $result['groupSingle']->image_display_url }}"
+                                            alt="{{ $result['groupSingle']->display_name }}" 
+                                            class="img-opd"
+                                        >
+                                    </div>
+                                    <div class="card-header py-4 border-0 pricing-header">
+                                        <div class="h5 text-center mb-0">
+                                            <span class="price font-weight-bolder">
+                                                {{ $result['groupSingle']->display_name }}
+                                            </span>
+                                        </div>
+                                        <p class="text-center">
+                                            {{ $result['groupSingle']->description }}
+                                        </p>
+                                    </div>
+                                    <div class="card-body mb-3">
+                                        <span class="badge badge-primary pl-3 pt-2 pr-3 pb-2"
+                                            style="font-size: 12pt !important;">
+                                            {{ $result['groupSingle']->package_count -1 }} Dataset
                                         </span>
                                     </div>
                                 </div>
@@ -91,8 +132,9 @@
                                 </div>
                                 <ul>
                                     @foreach ($result['kategori'] as $item)
+                                    {{-- {{DD($item)}} --}}
                                         <li>
-                                            <a href="#" class="d-flex d-inline">
+                                            <a href="{{ route('frontend.dataset.index',['group_id'=>$item->name]) }}" class="d-flex d-inline">
                                                 <span class="one-lines-words mr-2" style="width: 90% !important;">
                                                     {{ $item->display_name }}
                                                 </span>
@@ -124,8 +166,8 @@
                                                 data-placeholder="Pilih Perangkat Daerah" style="width: 100%">
                                                 <option value=""></option>
                                                 @foreach ($result['opdSelect'] as $item)
-                                                    <option value="{{ $item['id'] }}"
-                                                        {{ isset($result['pd']) && $item['id'] == $result['pd'] ? 'selected' : '' }}>
+                                                    <option value="{{ $item['id'] }}">
+                                                        {{-- {{ isset($result['pd']) && $item['id'] == $result['pd'] ? 'selected' : '' }}> --}}
                                                         {{ $item['display_name'] }}
                                                     </option>
                                                 @endforeach
@@ -274,6 +316,7 @@
     <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
     <script>
         $(function() {
+
             $('.select2').select2({
                 allowClear: true,
             }).on('select2:unselecting', function() {
@@ -284,6 +327,13 @@
                     e.preventDefault();
                 }
             });
+
+            const url_string = window.location;
+            const url = new URL(url_string);
+            const opd = url.searchParams.get("pd");
+            const group_id = url.searchParams.get("group_id");
+            if(opd) $("#pd").val(opd).trigger('change');
+            if(group_id) $("#group_id").val(group_id).trigger('change');
 
             var list = $(".list");
             if (list.height() > 380) {

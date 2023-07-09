@@ -16,7 +16,7 @@ class PDViewController extends Controller
         $body = ['all_fields' => true];
         $resOPD = RestApiFormatter::get('organization_list', $body);
         $data['opd'] = $resOPD->result;
-        // dd($resOPD);
+        // dd($data);
 
         return view('frontend.perangkat-daerah', $data);
     }

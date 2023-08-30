@@ -66,6 +66,13 @@ class InfografikRepository
             $store->group_id = $request->group_id;
             $store->ditambah_oleh = auth()->user()->id;
             $store->deskripsi = $request->deskripsi;
+            
+            if($request->has('pdf')){
+                $filename = $request->pdf->store('/public/report');
+                $store->pdf = $filename;
+            }
+
+            $store->save();
 
             if($request->has("gambar")){
                 $upload = new InfografikGambar();
@@ -99,12 +106,6 @@ class InfografikRepository
                 $upload->save();
             }
 
-            if($request->has('pdf')){
-                $filename = $request->pdf->store('/public/report');
-                $store->pdf = $filename;
-            }
-
-            $store->save();
             DB::commit();
 
             $status = true;

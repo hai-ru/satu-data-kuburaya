@@ -130,11 +130,11 @@ class InfografikRepository
             DB::beginTransaction();
 
             $update = $infografik;
-            $store->judul = $request->judul;
-            $store->slug = $request->slug;
-            $store->link = $request->link;
-            $store->tipe = $request->tipe;
-            $store->group_id = $request->group_id;
+            $update->judul = $request->judul;
+            $update->slug = $request->slug;
+            $update->link = $request->link;
+            $update->tipe = $request->tipe;
+            $update->group_id = $request->group_id;
             $update->deskripsi = $request->deskripsi;
             $update->diubah_oleh = auth()->user()->id;
 

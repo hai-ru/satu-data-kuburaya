@@ -63,7 +63,7 @@
                                         Pembuat
                                     </label>
                                     <div class="col-sm-12 col-md-8">
-                                        {!! Form::text('author', $dataset->author, [
+                                        {!! Form::text('author', $dataset?->author ?? '-', [
                                             'class' => 'form-control',
                                             'style' => 'height: 2.5em;',
                                             'disabled' => 'disabled',

@@ -59,8 +59,7 @@ class DatasetViewController extends Controller
                 $fq = $key === 0 ? $fq.$value : $fq." ".$value;
             }
         }
-        // $pd = 'organization:dinas-penanaman-modal-dan-pelayanan-terpadu-satu-pintu groups:apbd-dan-penerimaan-pajak';
-        // DD($fq);
+        
         $bodyDataset = [
             'q' => $cari,
             'rows' => $rows,
@@ -69,10 +68,9 @@ class DatasetViewController extends Controller
             'fq' => $fq,
             'sort' => $sortSelected,
         ];
-        // DD($bodyDataset);
-        // dd(http_build_query($bodyDataset));
+        
         $resDataset = RestApiFormatter::get('package_search', $bodyDataset);
-        // DD($resDataset);
+
         $datasetCount = $resDataset->result->count <= 0 ? 0 : $resDataset->result->count - 1;
 
         if ($datasetCount > $rows) {
@@ -116,6 +114,27 @@ class DatasetViewController extends Controller
                 $data['opdSidebar'] = $opdSidebar;
             }
         }
+
+        $result = json_decode(json_encode($resOPD->result),true);
+        $name_list = collect($result)->pluck('name');
+
+        $resOPDnotFields = RestApiFormatter::get('organization_list', []);
+
+        // $not_found = [];
+        foreach($resOPDnotFields->result as $item) {
+            if(!in_array($item, $name_list->toArray())) {
+                $display_name = ucwords(str_replace('-'," ",strtolower($item)));
+                $opdSidebar[] = [
+                    'id'=>$item,
+                    'name'=>$item,
+                    'display_name'=>$display_name,
+                    'package_count'=>null
+                ];
+            }
+        }
+        // $data['not_found'] = $not_found;
+
+        // dd($opdSelect,$opdSidebar);
 
         // ------- Sort
         $sort = [

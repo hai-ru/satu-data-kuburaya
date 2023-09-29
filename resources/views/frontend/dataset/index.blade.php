@@ -65,7 +65,7 @@
                                     <div class="card-body mb-3">
                                         <span class="badge badge-primary pl-3 pt-2 pr-3 pb-2"
                                             style="font-size: 12pt !important;">
-                                            {{ $result['pdSingle']->package_count -1 }} Dataset
+                                            {{ $result['pdSingle']->package_count }} Dataset
                                         </span>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     <div class="card-body mb-3">
                                         <span class="badge badge-primary pl-3 pt-2 pr-3 pb-2"
                                             style="font-size: 12pt !important;">
-                                            {{ $result['groupSingle']->package_count -1 }} Dataset
+                                            {{ $result['groupSingle']->package_count }} Dataset
                                         </span>
                                     </div>
                                 </div>
@@ -122,9 +122,11 @@
                                                     <span class="one-lines-words mr-2" style="width: 90% !important;">
                                                         {{ $item['display_name'] }}
                                                     </span>
-                                                    <span class="badge badge-secondary pr-2 pl-2 float-right">
-                                                        {{ $item['package_count'] - 1 }}
-                                                    </span>
+                                                    @if($item['package_count'])
+                                                        <span class="badge badge-secondary pr-2 pl-2 float-right">
+                                                            {{ $item['package_count'] }}
+                                                        </span>
+                                                    @endif
                                                 </a>
                                             </li>
                                         @endforeach
@@ -163,6 +165,9 @@
                             <form id="form-filter" action="{{ route('frontend.dataset.index') }}" method="GET">
                                 <input type="hidden" id="page" name="page">
                                 <input type="hidden" id="sort" name="sort">
+                                @if(Request::get('pd'))
+                                    <input type="hidden" name="pd" value="{{ Request::get('pd') }}">
+                                @endif
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <input class="form-control pl-4 pr-4" name="cari" id="cari"
@@ -264,13 +269,24 @@
                             </aside>
 
                             @if ($result['dataset'])
+                                @php
+                                    $nextpage = intval($result['page'])+1;
+                                    $beforepage = intval($result['page'])-1;
+                                @endphp
                                 <!--pagination start-->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <nav class="custom-pagination-nav mt-4">
                                             <ul class="pagination justify-content-center">
                                                 <li class="page-item {{ $result['page'] == 1 ? 'disabled' : '' }}">
-                                                    <a class="page-link" href="#" tabindex="-1">
+                                                    <a class="page-link" href="javascript:void(0);"
+                                                    onclick="{{
+                                                        $result['page'] == 1 ?
+                                                        "javascript:void(0);"
+                                                        :
+                                                        "gotoPage(".$beforepage.")"
+                                                    }}"
+                                                    >
                                                         <span class="ti-angle-left"></span>
                                                     </a>
                                                 </li>
@@ -298,7 +314,14 @@
                                                 @endfor
                                                 <li
                                                     class="page-item {{ $result['page'] == $result['totalPage'] ? 'disabled' : '' }}">
-                                                    <a class="page-link" href="#">
+                                                    <a class="page-link" href="javascript:void(0);"
+                                                            onclick="{{
+                                                                $result['page'] == $result['totalPage'] ?
+                                                                "javascript:void(0);"
+                                                                :
+                                                                "gotoPage(".$nextpage.")"
+                                                            }}"
+                                                    >
                                                         <span class="ti-angle-right"></span>
                                                     </a>
                                                 </li>

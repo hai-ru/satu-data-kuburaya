@@ -122,7 +122,7 @@
                                         alt="{{ $item->display_name }}" class="mb-3" height="100">
                                     <div class="promo-block-content">
                                         <h5>{{ ucfirst($item->display_name) }}</h5>
-                                        <p>{{ $item->package_count - 1 }} Dataset</p>
+                                        <p>{{ $item->package_count }} Dataset</p>
                                     </div>
                                 </div>
                             </a>

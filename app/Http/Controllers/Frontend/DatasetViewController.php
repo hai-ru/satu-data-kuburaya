@@ -35,7 +35,8 @@ class DatasetViewController extends Controller
         $page = $request->filled('page') ? $request->get('page') : 1;
         if ($request->filled('page')) {
             if ($request->get('page') > 1) {
-                $start = ($request->get('page') * $rows) - 9;
+                // $start = ($request->get('page') * $rows) - 9;
+                $start = $request->get('page') * $rows;
             }
         }
 
@@ -60,6 +61,8 @@ class DatasetViewController extends Controller
             }
         }
         
+        // DD($start);
+        if($start === 1) $start = 0;
         $bodyDataset = [
             'q' => $cari,
             'rows' => $rows,
@@ -68,8 +71,8 @@ class DatasetViewController extends Controller
             'fq' => $fq,
             'sort' => $sortSelected,
         ];
-        
         $resDataset = RestApiFormatter::get('package_search', $bodyDataset);
+        // dd($bodyDataset,$resDataset);
 
         $datasetCount = $resDataset->result->count <= 0 ? 0 : $resDataset->result->count - 1;
 

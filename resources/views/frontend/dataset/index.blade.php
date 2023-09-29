@@ -46,10 +46,14 @@
                             <div class="col-12">
                                 <div class="card text-center single-pricing-pack">
                                     <div class="pricing-img mt-4">
-                                        <img src="{{ $result['pdSingle']->image_display_url }}"
+                                        <img src="{{ $result['pdSingle']->image_display_url && $result['pdSingle']->image_display_url !== "" ? $result['pdSingle']->image_display_url : asset('frontend/img/data-analytics.svg') }}"
                                             alt="{{ $result['pdSingle']->display_name }}" 
                                             class="img-opd"
                                         >
+                                        {{-- <img src="{{ $result['pdSingle']->image_display_url }}"
+                                            alt="{{ $result['pdSingle']->display_name }}" 
+                                            class="img-opd"
+                                        > --}}
                                     </div>
                                     <div class="card-header py-4 border-0 pricing-header">
                                         <div class="h5 text-center mb-0">
@@ -73,10 +77,14 @@
                             <div class="col-12">
                                 <div class="card text-center single-pricing-pack">
                                     <div class="pricing-img mt-4">
-                                        <img src="{{ $result['groupSingle']->image_display_url }}"
+                                        <img src="{{ $result['groupSingle']->image_display_url && $result['groupSingle']->image_display_url !== "" ? $result['groupSingle']->image_display_url : asset('frontend/img/data-analytics.svg') }}"
                                             alt="{{ $result['groupSingle']->display_name }}" 
                                             class="img-opd"
                                         >
+                                        {{-- <img src="{{ $result['groupSingle']->image_display_url }}"
+                                            alt="{{ $result['groupSingle']->display_name }}" 
+                                            class="img-opd"
+                                        > --}}
                                     </div>
                                     <div class="card-header py-4 border-0 pricing-header">
                                         <div class="h5 text-center mb-0">
@@ -139,7 +147,7 @@
                                                     {{ $item->display_name }}
                                                 </span>
                                                 <span class="badge badge-secondary pr-2 pl-2 float-right">
-                                                    {{ $item->package_count - 1 }}
+                                                    {{ $item->package_count }}
                                                 </span>
                                             </a>
                                         </li>

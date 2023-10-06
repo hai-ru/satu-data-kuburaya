@@ -9,7 +9,7 @@
                         <div class="col-md-9 col-sm-9"></div>
                         <div class="col-md-3 col-sm-3">
                             <div class="footer-nav-wrap text-white">
-                                <h4 class="text-white">SATU DATA KOTA PONTIANAK</h4>
+                                <h4 class="text-white">SATU DATA KUBU RAYA</h4>
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Tentang</a>

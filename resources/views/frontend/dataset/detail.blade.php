@@ -168,7 +168,7 @@
                         <div class="card-body">
                             <p class="alert alert-info" style="font-size: 10pt;">
                                 Data Anda akan dijaga kerahasiaannya dan tidak akan digunakan
-                                di luar kepentingan analisa dari Pemerintah Kota Pontianak
+                                di luar kepentingan analisa dari Pemerintah Kubu Raya
                             </p>
                             <form action="#" method="POST" id="contactForm1" class="contact-us-form"
                                 novalidate="novalidate">

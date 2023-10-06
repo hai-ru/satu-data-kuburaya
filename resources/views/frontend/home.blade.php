@@ -80,7 +80,7 @@
                             <div class="col-md-4">
                                 <div class="single-counter gray-light-bg shadow-sm p-4 rounded text-center border-0">
                                     <p class="text-left three-lines-words">
-                                        Organisasi Perangkat Daerah yang publikasi datanya tampil di Satu Data Kota Pontianak.
+                                        Organisasi Perangkat Daerah yang publikasi datanya tampil di Satu Data Kubu Raya.
                                     </p>
                                     <h2 class="mb-0">{{ $total_opd }}</h2>
                                     <p>Total OPD</p>

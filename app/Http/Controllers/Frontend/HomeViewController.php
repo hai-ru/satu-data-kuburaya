@@ -46,8 +46,6 @@ class HomeViewController extends Controller
         // --------- Daftar Slider
         $scopeSlider[] = ['is_active', '=', true];
         $data['slider'] = $this->sliderRepo->get($scopeSlider);
-        // $request->visitor()->visit('home');
-        // DD($data['slider']);
 
         // --------- Daftar Infografik
         $data['infografik'] = $this->infografikRepo->get();
@@ -57,7 +55,8 @@ class HomeViewController extends Controller
         $selectTestimoni = ['nama', 'rating', 'testimoni'];
         $data['testimoni'] = $this->testimoniRepo->get($scopeTestimoni, $selectTestimoni);
 
-        // DD( $request->createVisitLog() );
+        $page = \App\Models\Page::where('name','home')->firstOrCreate(['name'=>'home']);
+        $request->visitor()->visit($page);
 
         return view('frontend.home', $data);
     }

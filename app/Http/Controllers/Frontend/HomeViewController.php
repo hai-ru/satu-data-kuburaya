@@ -26,7 +26,7 @@ class HomeViewController extends Controller
         $this->sliderRepo = $sliderRepo;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data['pageTitle'] = 'Beranda';
 
@@ -46,6 +46,8 @@ class HomeViewController extends Controller
         // --------- Daftar Slider
         $scopeSlider[] = ['is_active', '=', true];
         $data['slider'] = $this->sliderRepo->get($scopeSlider);
+        // $request->visitor()->visit('home');
+        // DD($data['slider']);
 
         // --------- Daftar Infografik
         $data['infografik'] = $this->infografikRepo->get();
@@ -54,6 +56,8 @@ class HomeViewController extends Controller
         $scopeTestimoni[] = ['is_show', '=', true];
         $selectTestimoni = ['nama', 'rating', 'testimoni'];
         $data['testimoni'] = $this->testimoniRepo->get($scopeTestimoni, $selectTestimoni);
+
+        // DD( $request->createVisitLog() );
 
         return view('frontend.home', $data);
     }

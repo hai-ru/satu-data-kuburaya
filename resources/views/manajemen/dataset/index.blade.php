@@ -6,7 +6,7 @@
             <div class="card-title float-md-start mt-2">
                 {{ $pageTitle }}
             </div>
-            @can('dataset-add')
+            {{-- @can('dataset-add')
                 <div class="float-md-end">
                     <a href="{{ route('dataset.create') }}"
                         class="btn btn-success waves-effect btn-label waves-light btn-sm-full-width">
@@ -14,7 +14,7 @@
                         TAMBAH
                     </a>
                 </div>
-            @endcan
+            @endcan --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -25,9 +25,9 @@
                             <th style="width: 10px">#</th>
                             <th>JUDUL DATASET</th>
                             <th class="text-center">VISIBILITAS</th>
-                            @if (auth()->user()->hasAnyPermission(['dataset-read', 'dataset-edit', 'dataset-delete']))
+                            {{-- @if (auth()->user()->hasAnyPermission(['dataset-read', 'dataset-edit', 'dataset-delete']))
                                 <th class="text-center">AKSI</th>
-                            @endif
+                            @endif --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -44,7 +44,7 @@
                                         {{ $item->private ? 'privat' : 'publik' }}
                                     </span>
                                 </td>
-                                @if (auth()->user()->hasAnyPermission(['dataset-read', 'dataset-edit', 'dataset-delete']))
+                                {{-- @if (auth()->user()->hasAnyPermission(['dataset-read', 'dataset-edit', 'dataset-delete']))
                                     <td class="text-center">
                                         <div class="btn-group btn-full-width mb-3">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                @endif
+                                @endif --}}
                             </tr>
                         @endforeach
                     </tbody>

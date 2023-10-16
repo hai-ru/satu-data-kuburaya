@@ -38,7 +38,7 @@
                         <a href="{{ route('infografik.index') }}"
                             class="waves-effect {{ Request::is('dashboard/infografik*') ? 'active' : '' }}">
                             <i class="bx bx-line-chart"></i>
-                            <span key="t-infografik">Infografik</span>
+                            <span key="t-infografik">Visualisasi</span>
                         </a>
                     </li>
                 @endcan

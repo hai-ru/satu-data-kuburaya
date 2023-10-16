@@ -23,7 +23,7 @@
                     <thead>
                         <tr role="row">
                             <th style="width: 10px">#</th>
-                            <th>JUDUL INFOGRAFIK</th>
+                            <th>JUDUL VISUALISASI</th>
                             <th>KATEGORI</th>
                             {{-- <th>GAMBAR</th> --}}
                             @if (auth()->user()->hasAnyPermission(['infografik-read', 'infografik-edit', 'infografik-delete']))

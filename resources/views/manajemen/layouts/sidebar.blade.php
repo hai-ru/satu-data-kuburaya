@@ -86,7 +86,7 @@
                     @if (auth()->user()->hasAnyPermission(['roles-browse', 'permissions-browse', 'users-browse']))
                         <!-- Manajemen User -->
                         <li class="menu-title" key="t-menu">Manajemen User</li>
-                        @can('roles-browse')
+                        {{-- @can('roles-browse')
                             <li class="{{ Request::is('dashboard/roles*') ? 'mm-active' : '' }}">
                                 <a href="{{ route('roles.index') }}"
                                     class="waves-effect {{ Request::is('dashboard/roles*') ? 'active' : '' }}">
@@ -103,7 +103,7 @@
                                     <span key="t-permissions">Hak Akses</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan --}}
                         @can('users-browse')
                             <li class="{{ Request::is('dashboard/users*') ? 'mm-active' : '' }}">
                                 <a href="{{ route('users.index') }}"
